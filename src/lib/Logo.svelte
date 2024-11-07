@@ -13,7 +13,7 @@
 		in:fly={{ y: 100, duration: 1500 }}
 	/>
 {:else}
-	<div style="height: 16rem" />
+	<div style="height: 16rem"></div>
 {/if}
 
 <style>

@@ -20,7 +20,7 @@
 
 	<h1>Hello {agent}!</h1>
 
-	<Counter id="0" {agent} />
+	<!-- <Counter id="0" {agent} /> -->
 
 	{#if desktop}
 		<br />

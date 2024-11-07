@@ -1,19 +1,32 @@
-const windowStateManager = require('electron-window-state');
-const { app, BrowserWindow, ipcMain } = require('electron');
-const contextMenu = require('electron-context-menu');
-const serve = require('electron-serve');
-const path = require('path');
+import windowStateManager from 'electron-window-state';
+import { app, BrowserWindow, ipcMain } from 'electron';
+import  contextMenu  from 'electron-context-menu';
+import serve from 'electron-serve';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-try {
-	require('electron-reloader')(module);
-} catch (e) {
-	console.error(e);
-}
+
+// try {
+// 	require('electron-reloader')(module);
+// } catch (e) {
+// 	console.error(e);
+// }
+
+(async () => {
+	if (process.env.NODE_ENV === 'development') {
+	  const reloader = await import('electron-reloader');
+	  reloader.default(module);
+	}
+  })();
+  
 
 const serveURL = serve({ directory: '.' });
 const port = process.env.PORT || 5173;
 const dev = !app.isPackaged;
 let mainWindow;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 function createWindow() {
 	let windowState = windowStateManager({
